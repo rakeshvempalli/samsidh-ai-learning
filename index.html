@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samsidh Satish Reddy School – AI Learning Hub</title>
+<meta name="description" content="A fun and interactive AI learning platform for Classes 5–10 at Samsidh Satish Reddy School.">
+<link rel="icon" href="https://i.imgur.com/NI2CW1t.png" type="image/png">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #c53ba4;
+  --secondary: #004aad;
+  --bg-dark: #26174e;
+  --light: #faf7fc;
+  --border-radius: 1.2em;
+}
+body {
+  font-family: 'Poppins', 'Nunito', Arial, sans-serif;
+  margin:0; padding:0;
+  background: linear-gradient(135deg, var(--primary) 50%, var(--secondary) 100%);
+  color: var(--light);
+  min-height:100vh;
+  scroll-behavior:smooth;
+}
+header, section {
+  padding: 70px 5vw;
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+}
+.hero {
+  display:flex; flex-direction:column; align-items: center; justify-content: center;
+  height:90vh;
+  position:relative;
+}
+.logo-box { margin-bottom:25px; }
+.logo-box img { width:90px; height:90px; border-radius:50%; border:3px solid var(--secondary); box-shadow: 0 0 20px var(--primary); background:#fff;}
+.hero-title {
+  font-size:3em; margin-bottom:18px;
+  font-weight:700;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 8px #3336;
+}
+.hero-tagline { font-size:1.4em; margin-bottom:25px; color:var(--light);}
+.particle-bg {
+  width:100vw;height:100vh;position:absolute;top:0;left:0;z-index:-1;
+  overflow:hidden;
+}
+.name-entry-box {
+  background:rgba(34,40,60,0.89); padding:28px 36px;border-radius:var(--border-radius); box-shadow: 0 10px 30px #0005;
+  margin-bottom:28px;
+  text-align:center;
+}
+input[type="text"]{
+  padding:12px 24px; border-radius:var(--border-radius); border:2px solid var(--primary); font-size:1.2em;
+}
+.button-row {
+  display:flex; gap:14px; margin-top:18px; justify-content:center;
+}
+button, .btn-pink, .btn-blue {
+  background:var(--primary);
+  color:#fff; font-weight:700; font-size:1.1em;
+  padding:12px 30px;border:none;border-radius:var(--border-radius);
+  cursor:pointer; margin:7px 0;
+  box-shadow: 0 2px 14px var(--primary)33;
+  transition: background .23s, transform .18s;
+}
+button:hover, .btn-pink:hover, .btn-blue:hover {
+  background: var(--secondary);
+  transform: scale(1.06);
+}
+.btn-pink { background:var(--primary); }
+.btn-blue { background:var(--secondary); }
+.neon-header {
+  font-size:2em;font-weight:700; margin-bottom:14px;
+  background:linear-gradient(90deg, var(--secondary), var(--primary));
+  -webkit-background-clip: text;
+  color:transparent;
+  text-shadow: 0 2px 16px var(--primary)70;
+}
+.topic-card {
+  background:#2e2069ed;box-shadow: 0 6px 26px #0003;border-radius:var(--border-radius);
+  margin-bottom:20px;padding:24px 30px;
+}
+.topic-card h3 { margin:0 0 14px; }
+.icon-cute { font-size:2em; margin-right:10px;}
+.diduknow {
+  background:var(--primary)cc;color:#fff;border-radius:var(--border-radius);
+  padding:12px; margin:15px 0;
+  box-shadow:0 2px 10px #0002;
+}
+.copilot-chat-box {
+  background: #091b43de; border-radius:var(--border-radius);padding:22px;
+  box-shadow:0 2px 12px #0003;
+  margin-bottom:16px;
+}
+.copilot-demo-area { min-height:80px;margin-bottom:10px;}
+.copilot-typebar {
+  display:flex; gap:5px;
+}
+.copilot-resp { font-size:1.1em;margin-top:8px; }
+.quiz-section { margin-bottom:26px; }
+.quiz-question { font-size:1.1em; margin-bottom:8px;}
+.quiz-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.quiz-btn {
+  background:var(--secondary); color:#fff;border:none;padding:8px;border-radius:var(--border-radius); font-weight:600; margin-bottom:6px;
+}
+.quiz-btn:hover { background:var(--primary);}
+.quiz-score { font-size:1.2em; margin-top:14px; font-weight:700;}
+.leaderboard-box {
+  background:var(--bg-dark);padding:20px;border-radius:var(--border-radius);margin-top:14px;
+}
+.video-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;margin-top:18px;}
+.video-card { background:#fff2fa;color:#2e2069;border-radius:var(--border-radius);box-shadow:0 2px 18px #0001;padding:10px;}
+.project-card { background: #141a36ee;color:#f6edfc;border-radius:var(--border-radius);box-shadow:0 2px 18px #0001;padding:16px;margin-bottom:16px;}
+.resources-list li { margin-bottom:10px;}
+.teacher-materials { background:var(--bg-dark);padding:18px;border-radius:var(--border-radius);margin-top:14px;}
+.contact-form-box { background:#2e2069;padding:18px;border-radius:var(--border-radius);box-shadow:0 2px 10px #0004;max-width:410px;margin:auto;}
+input, textarea, select { margin-bottom:11px;width:85%; }
+footer {
+  background: #2e2069; color:#fff; text-align:center;
+  padding:24px 0; margin-top:36px; font-size:1em;
+  border-top: 5px solid var(--primary);
+}
+::-webkit-scrollbar { width:8px; background:var(--secondary);}
+::-webkit-scrollbar-thumb { background:var(--primary);border-radius:6px;}
+/* Animations */
+@keyframes particleMove {
+  0% { transform: translateY(0);}
+  100%{transform: translateY(110vh);}
+}
+.particle { position:absolute;width:8px;height:8px;border-radius:50%;background:#fff3;box-shadow:0 0 9px var(--primary), 0 0 7px var(--secondary); animation: particleMove 16s linear infinite;}
+.wave-bg {
+  position:absolute;width:100vw;height:100vh;top:0;left:0;z-index:-1;overflow:hidden;
+}
+.wave {
+  position:absolute;width:120vw;height:90px;left:-8vw;top:60vh; opacity:0.5;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  border-radius:80px;
+  filter: blur(20px);
+  animation: waveMove 21s linear infinite;
+}
+@keyframes waveMove {
+  0%{transform: translateY(0);}
+  100%{transform: translateY(35vh);}
+}
+</style>
+</head>
+<body>
+<!-- Background Animations -->
+<div class="particle-bg" id="particleBg"></div>
+<div class="wave-bg"><div class="wave"></div></div>
+
+<!-- HOME / HERO -->
+<header id="home" class="hero">
+ <div class="logo-box">
+  <img src="https://i.imgur.com/NI2CW1t.png" alt="School Logo">
+ </div>
+ <div class="hero-title">Samsidh Satish Reddy School – AI Learning Hub</div>
+ <div class="hero-tagline">“Where Young Minds Meet Artificial Intelligence”</div>
+ <form id="nameEntryForm" class="name-entry-box">
+   <label for="studentName">👋 Enter your name to begin your AI journey:</label>
+   <br>
+   <input type="text" id="studentName" placeholder="Enter your name" required>
+   <button type="submit">Start Adventure</button>
+ </form>
+ <div id="greeting" style="font-size:1.5em;margin-bottom:9px;display:none;"></div>
+ <div class="button-row" style="display:none;" id="mainNavButtons">
+  <button onclick="scrollToSection('learnai')">Start Learning</button>
+  <button onclick="scrollToSection('quiz')">Take a Quiz</button>
+  <button onclick="scrollToSection('videos')">Watch Videos</button>
+ </div>
+</header>
+
+<!-- LEARN ABOUT AI -->
+<section id="learnai">
+ <div class="neon-header">Learn About Artificial Intelligence</div>
+ <div class="topic-card">
+   <h3><span class="icon-cute">🤖</span>What is Artificial Intelligence?</h3>
+   <p>
+    Artificial Intelligence (AI) is when computers can think, learn, and solve problems just like humans do. With AI, machines can recognize pictures, understand voices, play games, and much more[web:1].
+   </p>
+   <div class="diduknow">Did you know? <br>AI can help doctors spot diseases early, make cars drive themselves, and even write stories!</div>
+ </div>
+ <div class="topic-card">
+   <h3><span class="icon-cute">🏠</span>AI in Our Daily Life</h3>
+   <ul>
+     <li>Smartphones use AI to recognize your face and voice.</li>
+     <li>Online games use AI to create challenging opponents.</li>
+     <li>Streaming apps suggest your favorite songs and movies with AI[web:1].</li>
+     <li>Maps use AI to find the fastest routes for you.</li>
+   </ul>
+ </div>
+ <div class="topic-card">
+   <h3><span class="icon-cute">📚</span>Machine Learning Made Easy</h3>
+   <p>
+    Machine Learning (ML) is a way for computers to learn from data and improve over time—just like students! For example, teaching a computer to recognize animals by showing pictures again and again[web:1].
+   </p>
+   <div class="diduknow">Did you know? <br>Machine Learning helps filter spam emails so your inbox stays safe!</div>
+ </div>
+ <div class="topic-card">
+   <h3><span class="icon-cute">🧠</span>Neural Networks</h3>
+   <p>
+     Neural Networks are like tiny brains for computers. They help the machine see patterns and make smart decisions. Cute icons or drawings show how data flows through layers—like solving a puzzle!
+   </p>
+ </div>
+</section>
+
+<!-- COPILOT CORNER -->
+<section id="copilot">
+ <div class="neon-header">Copilot Corner</div>
+ <div class="topic-card">
+   <h3><span class="icon-cute">🦾</span>Meet Microsoft Copilot</h3>
+   <p>
+    Microsoft Copilot is a smart assistant powered by AI. It helps students write essays, code programs, and do research quickly and easily[web:2].
+   </p>
+   <ul>
+     <li>Get ideas for school projects</li>
+     <li>Summarize lessons and notes</li>
+     <li>Ask grammar or math questions</li>
+   </ul>
+ </div>
+ <div class="project-card copilot-chat-box">
+   <h4>Try Copilot Demo:</h4>
+   <div class="copilot-demo-area" id="copilotDemoArea">
+     <div style="color:#ccc;">Ask me anything – Type below!</div>
+   </div>
+   <div class="copilot-typebar">
+     <input type="text" id="copilotInput" placeholder="Type your question..." style="width:70%;">
+     <button class="btn-blue" onclick="copilotAsk()">Send</button>
+   </div>
+   <div class="copilot-resp" id="copilotResp"></div>
+ </div>
+ <div class="video-card">
+   <h4>How to Use Copilot for Schoolwork</h4>
+    <iframe width="100%" height="180px" src="https://www.youtube.com/embed/dlJshz0ErsU" title="Copilot for Students" frameborder="0" allowfullscreen></iframe>
+   <p>Learn how Copilot can assist in writing, coding, and research tasks[web:2].</p>
+ </div>
+</section>
+
+<!-- QUIZZES & CHALLENGES -->
+<section id="quiz">
+ <div class="neon-header">Quizzes & Challenges</div>
+ <div id="quizSection" class="quiz-section">
+   <div class="quiz-question" id="quizQ"></div>
+   <div class="quiz-options" id="quizOpts"></div>
+   <div class="quiz-score" id="quizScore"></div>
+ </div>
+ <div class="leaderboard-box" id="quizLeaderboard">
+   <h4>Leaderboard</h4>
+   <ol id="leaderboardList"></ol>
+ </div>
+</section>
+
+<!-- VIDEO LEARNING LIBRARY -->
+<section id="videos">
+ <div class="neon-header">Video Learning Library</div>
+ <div class="video-grid">
+   <div class="video-card">
+      <iframe width="100%" height="180px" src="https://www.youtube.com/embed/jhqjgx4GcFI" title="Intro to AI" frameborder="0" allowfullscreen></iframe>
+      <p>Intro to AI[web:3]</p>
+   </div>
+   <div class="video-card">
+      <iframe width="100%" height="180px" src="https://www.youtube.com/embed/nqye02H_H6I" title="AI Tools for Students" frameborder="0" allowfullscreen></iframe>
+      <p>AI Tools for Students[web:3]</p>
+   </div>
+   <div class="video-card">
+      <iframe width="100%" height="180px" src="https://www.youtube.com/embed/McY5ME6i2ro" title="How Copilot Works" frameborder="0" allowfullscreen></iframe>
+      <p>How Copilot Works[web:3]</p>
+   </div>
+   <div class="video-card">
+      <iframe width="100%" height="180px" src="https://www.youtube.com/embed/oQDF1pT3JGE" title="AI Ethics for Kids" frameborder="0" allowfullscreen></iframe>
+      <p>AI Ethics for Kids[web:3]</p>
+   </div>
+ </div>
+</section>
+
+<!-- PROJECTS & ACTIVITIES -->
+<section id="projects">
+ <div class="neon-header">Projects & Activities</div>
+ <div class="project-card">
+   <h4>🎤 Create Your Own Chatbot</h4>
+   <p>Follow our step-by-step guide to make a chatbot that talks with you using simple code!</p>
+   <a href="https://school-example-bucket.s3.amazonaws.com/project-chatbot-guide.pdf" class="btn-pink" download>Download Project Guide (PDF)</a>
+ </div>
+ <div class="project-card">
+   <h4>📷 Teachable Machine Image Recognition</h4>
+   <p>Train a machine to recognize faces, objects, or animals using Teachable Machine tool.</p>
+   <a href="https://school-example-bucket.s3.amazonaws.com/project-teachable-guide.pdf" class="btn-blue" download>Download Project Guide (PDF)</a>
+ </div>
+ <div class="project-card">
+   <h4>✍️ Using Copilot for Creative Writing</h4>
+   <p>See how Copilot can help you write stories, poems, and more! Try prompts and edit with AI help.</p>
+   <a href="https://school-example-bucket.s3.amazonaws.com/project-copilot-writing.pdf" class="btn-pink" download>Download Project Guide (PDF)</a>
+ </div>
+</section>
+
+<!-- RESOURCES & LINKS -->
+<section id="resources">
+ <div class="neon-header">Resources & Useful Links</div>
+ <ul class="resources-list">
+  <li><a href="https://teachablemachine.withgoogle.com/" target="_blank">Teachable Machine</a></li>
+  <li><a href="https://copilot.microsoft.com/" target="_blank">Microsoft Copilot</a></li>
+  <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a></li>
+  <li><a href="https://www.canva.com/ai/" target="_blank">Canva AI</a></li>
+ </ul>
+ <div class="teacher-materials">
+   <h4>For Teachers & Mentors</h4>
+   <ul>
+     <li><a href="https://www.microsoft.com/en-us/education" target="_blank">Microsoft Education</a></li>
+     <li><a href="https://www.elementsofai.com/" target="_blank">Elements of AI Course</a></li>
+     <li><a href="https://www.khanacademy.org/computing/computer-science/ai" target="_blank">Khan Academy AI</a></li>
+   </ul>
+ </div>
+</section>
+
+<!-- FEEDBACK & CONTACT -->
+<section id="contact">
+ <div class="neon-header">Feedback & Contact</div>
+ <div class="contact-form-box">
+   <form id="feedbackForm">
+     <input type="text" name="contactName" placeholder="Your Name" required><br>
+     <select name="contactClass" required>
+       <option value="">Class</option>
+       <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+     </select><br>
+     <textarea name="contactMsg" rows="3" placeholder="Your Message" required></textarea><br>
+     <button type="submit" class="btn-blue">Submit Feedback</button>
+   </form>
+   <div id="feedbackMsg" style="margin-top:13px;"></div>
+ </div>
+</section>
+<footer>
+ © 2025 Samsidh Satish Reddy School | AI Learning Hub
+</footer>
+
+<script>
+// Background Particle Animation
+function createParticles() {
+  const bg = document.getElementById('particleBg');
+  for (let i=0; i<48; i++) {
+    let p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = (Math.random()*96)+'vw';
+    p.style.top = (Math.random()*92)+'vh';
+    p.style.animationDelay = (Math.random()*12)+'s';
+    bg.appendChild(p);
+  }
+}
+createParticles();
+// Navigation Scroll
+function scrollToSection(id) {
+ document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+// Name Entry / Greeting
+const nameForm = document.getElementById('nameEntryForm');
+const greetingDiv = document.getElementById('greeting');
+nameForm.addEventListener('submit',function(e){
+ e.preventDefault();
+ let nm = document.getElementById('studentName').value.trim();
+ if(nm){
+   greetingDiv.textContent = `Welcome, ${nm}! Let’s explore the world of AI together!`;
+   greetingDiv.style.display = 'block';
+   document.getElementById('mainNavButtons').style.display = 'flex';
+   nameForm.style.display='none';
+ }
+});
+
+// Copilot Corner demo (simple simulated replies)
+function copilotAsk(){
+  const inp = document.getElementById('copilotInput');
+  const area = document.getElementById('copilotDemoArea');
+  const resp = document.getElementById('copilotResp');
+  let usermsg = inp.value.trim();
+  if(!usermsg) return;
+  area.innerHTML += `<div style="color:#80ebff;">You: ${usermsg}</div>`;
+  setTimeout(()=>{ // simulate AI reply
+    resp.innerHTML = '<span style="color:#f1c40f;">Copilot: </span>' + pickCopilotReply(usermsg);
+    inp.value = '';
+  },700);
+}
+function pickCopilotReply(q){
+  q = q.toLowerCase();
+  if(q.includes('define')||q.includes('what is')){
+    return "AI stands for Artificial Intelligence, which means computers that can learn and solve problems!";
+  }
+  if(q.includes('help')||q.includes('write')){
+    return "I can help you write stories, emails, or answers — just tell me what topic!";
+  }
+  if(q.includes('math')){
+    return "Sure! Try asking your math question and I'll explain the steps.";
+  }
+  if(q.includes('hello')||q.includes('hi')){
+    return "Hello! What would you like to learn today?";
+  }
+  if(q.includes('project')){
+    return "Here are some fun project ideas: Try building a chatbot or train a machine to recognize images!";
+  }
+  return "That sounds interesting! Let me find the best answer for you.";
+}
+
+// Quiz System
+const quizQ = document.getElementById('quizQ');
+const quizOpts = document.getElementById('quizOpts');
+const quizScore = document.getElementById('quizScore');
+const leaderboard = document.getElementById('leaderboardList');
+const quizQuestions = [
+  {
+    q: "What does AI stand for?",
+    opts:["Awesome Intelligence","Artificial Intelligence","Active Internet","Automated Input"],
+    ans:1
+  },
+  {
+    q:"Which AI tool suggests songs on music apps?",
+    opts:["SmartCar","Teachable Machine","Recommendation System","Copilot"],
+    ans:2
+  },
+  {
+    q:"Machine Learning helps computers...",
+    opts:["Eat food","Learn from data","Fly airplanes","Draw pictures"],
+    ans:1
+  },
+  {
+    q:"Which is an example of neural networks?",
+    opts:["Traffic signals","School bell","Brain cells in computers","Bicycle wheels"],
+    ans:2
+  },
+  {
+    q:"Microsoft Copilot can help you...",
+    opts:["Cook dinner","Write code and essays","Ride a bike","Open doors"],
+    ans:1
+  }
+];
+let quizIdx = 0, score = 0, username = "", attempts = 0, highscores=[];
+function showQuiz(){
+  quizQ.textContent = quizQuestions[quizIdx].q;
+  quizOpts.innerHTML='';
+  quizQuestions[quizIdx].opts.forEach((o,i)=>{
+    let b = document.createElement('button');
+    b.className='quiz-btn';
+    b.textContent=o;
+    b.onclick=function(){quizAnswer(i);}
+    quizOpts.appendChild(b);
+  });
+}
+function quizAnswer(i){
+  if(i==quizQuestions[quizIdx].ans){
+    quizScore.textContent="✅ Great job!";
+    score++;
+  } else {
+    quizScore.textContent="❌ Try again!";
+  }
+  setTimeout(()=>{
+    quizIdx++;
+    if(quizIdx<quizQuestions.length){
+      quizScore.textContent='';
+      showQuiz();
+    } else {
+      quizScore.textContent=`Your Score: ${score}/${quizQuestions.length}`;
+      highscores.push({name:document.getElementById('studentName').value||('User'+attempts),score});
+      displayLeaderboard();
+      quizIdx=0;score=0;attempts++;
+      setTimeout(()=>{quizScore.textContent=''; showQuiz();},2200);
+    }
+  }, 1200);
+}
+function displayLeaderboard() {
+  leaderboard.innerHTML = '';
+  highscores.sort((a,b)=>b.score-a.score);
+  highscores.slice(0,5).forEach((hs,i)=>{
+    leaderboard.innerHTML += `<li>${hs.name}: ${hs.score}/${quizQuestions.length}</li>`;
+  });
+}
+showQuiz();
+
+// Feedback Form (dummy for now)
+document.getElementById('feedbackForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ document.getElementById('feedbackMsg').textContent = "👍 Thanks for your feedback! We'll review your message soon.";
+ this.reset();
+});
+
+// Navigation links
+function addNavLinks() {
+  // Only for desktop sticky navigation, but we use buttons in hero section
+}
+</script>
+</body>
+</html>
